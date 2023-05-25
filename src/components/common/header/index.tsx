@@ -1,20 +1,18 @@
-import { Fragment, useState } from "react";
-import { Dialog, Popover, Tab, Transition } from "@headlessui/react";
+import { Fragment, useState, FC } from "react";
+import { Dialog, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { NavLink } from "react-router-dom";
+import classNames from "classnames";
 
 const navigation = {
   pages: [
-    { name: "Movies", href: "#" },
-    { name: "Series", href: "#" },
-    { name: "Actors", href: "#" },
+    { name: "Movies", href: "/movies" },
+    { name: "Series", href: "/series" },
+    { name: "Actors", href: "/actors" },
   ],
 };
 
-function classNames(...classes: any[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
-const Header = () => {
+const Header: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -57,47 +55,22 @@ const Header = () => {
                 <div className="space-y-6 border-t border-gray-200 px-4 py-6">
                   {navigation.pages.map((page) => (
                     <div key={page.name} className="flow-root">
-                      <a
-                        href={page.href}
-                        className="-m-2 block p-2 font-medium text-gray-900"
+                      <NavLink
+                        to={page.href}
+                        onClick={() => setOpen(false)}
+                        className={(navData) =>
+                          classNames(
+                            "-m-2 block p-2 font-medium text-gray-900",
+                            {
+                              ["text-indigo-600"]: navData.isActive,
+                            }
+                          )
+                        }
                       >
                         {page.name}
-                      </a>
+                      </NavLink>
                     </div>
                   ))}
-                </div>
-
-                <div className="space-y-6 border-t border-gray-200 px-4 py-6">
-                  <div className="flow-root">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Sign in
-                    </a>
-                  </div>
-                  <div className="flow-root">
-                    <a
-                      href="#"
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                    >
-                      Create account
-                    </a>
-                  </div>
-                </div>
-
-                <div className="border-t border-gray-200 px-4 py-6">
-                  <a href="#" className="-m-2 flex items-center p-2">
-                    <img
-                      src="https://tailwindui.com/img/flags/flag-canada.svg"
-                      alt=""
-                      className="block h-auto w-5 flex-shrink-0"
-                    />
-                    <span className="ml-3 block text-base font-medium text-gray-900">
-                      CAD
-                    </span>
-                    <span className="sr-only">, change currency</span>
-                  </a>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
@@ -120,10 +93,8 @@ const Header = () => {
                 <span className="sr-only">Open menu</span>
                 <Bars3Icon className="h-6 w-6" aria-hidden="true" />
               </button>
-
-              {/* Logo */}
               <div className="ml-4 flex lg:ml-0">
-                <a href="#">
+                <a href="https://tailwindcss.com" target="_blank">
                   <span className="sr-only">Your Company</span>
                   <img
                     className="h-8 w-auto"
@@ -135,35 +106,23 @@ const Header = () => {
 
               <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
                 <div className="flex h-full space-x-8">
-                  {/* {navigation.categories.map((category) => (
-                    <Popover key={category.name} className="flex">
-                      {({ open }) => (
-                        <>
-                          <div className="relative flex">
-                            <Popover.Button
-                              className={classNames(
-                                open
-                                  ? "border-indigo-600 text-indigo-600"
-                                  : "border-transparent text-gray-700 hover:text-gray-800",
-                                "relative z-10 -mb-px flex items-center border-b-2 pt-px text-sm font-medium transition-colors duration-200 ease-out"
-                              )}
-                            >
-                              {category.name}
-                            </Popover.Button>
-                          </div>
-                        </>
-                      )}
-                    </Popover>
-                  ))} */}
-
                   {navigation.pages.map((page) => (
-                    <a
+                    <NavLink
                       key={page.name}
-                      href={page.href}
-                      className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
+                      to={page.href}
+                      className={(navData) =>
+                        classNames(
+                          "flex items-center text-sm font-medium text-gray-700 hover:text-gray-800 border-b-2",
+                          {
+                            ["border-indigo-600 text-indigo-600"]:
+                              navData.isActive,
+                            ["border-transparent"]: !navData.isActive,
+                          }
+                        )
+                      }
                     >
                       {page.name}
-                    </a>
+                    </NavLink>
                   ))}
                 </div>
               </Popover.Group>
