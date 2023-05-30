@@ -5,10 +5,13 @@ import {
   FunnelIcon,
   Squares2X2Icon,
 } from "@heroicons/react/20/solid";
-import axios from "axios";
 import { MovieCard } from "../../components";
 import { SearchBar, SideBar } from "../../components";
 import classNames from "classnames";
+import {
+  useGetActorsQuery,
+  useGetTiltesQuery,
+} from "../../services/moviesdatabase";
 
 const sortOptions = [
   { name: "Most Popular", href: "#", current: true },
@@ -18,16 +21,6 @@ const sortOptions = [
   { name: "Price: High to Low", href: "#", current: false },
 ];
 
-const options = {
-  method: "GET",
-  url: "https://moviesdatabase.p.rapidapi.com/titles",
-  params: { list: "most_pop_movies" },
-  headers: {
-    "X-RapidAPI-Key": import.meta.env.VITE_MOVIES_DATABASE_RAPID_API_KEY,
-    "X-RapidAPI-Host": "moviesdatabase.p.rapidapi.com",
-  },
-};
-
 interface Movie {
   id: string;
   originalTitleText: { text: string };
@@ -36,6 +29,9 @@ interface Movie {
 const MainPage = () => {
   const [titles, setTitles] = useState<Movie[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const { data, error, isLoading } = useGetTiltesQuery({ page: 1 });
+
+  console.log(data, error, isLoading);
 
   useEffect(() => {
     // axios.request(options).then((res) => {
@@ -135,7 +131,7 @@ const MainPage = () => {
                     <h2 className="sr-only">Titles</h2>
 
                     <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                      {titles.map((el) => {
+                      {data?.results.map((el) => {
                         return <MovieCard id={el.id} key={el.id} movie={el} />;
                       })}
                     </div>
