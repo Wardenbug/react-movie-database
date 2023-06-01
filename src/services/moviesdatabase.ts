@@ -1,9 +1,19 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+type infoType =
+  | "base_info"
+  | "mini_info"
+  | "image"
+  | "creators_directors_writers"
+  | "revenue_budget"
+  | "extendedCast"
+  | "rating"
+  | "awards" | 'custom_info';
 interface TitlesRequest {
   page: number;
   list?: string;
   genre?: string;
+  info?: infoType;
 }
 
 export const moviesDatabaseApi = createApi({
@@ -20,7 +30,13 @@ export const moviesDatabaseApi = createApi({
       query: () => "actors",
     }),
     getTiltes: builder.query({
-      query: (request: TitlesRequest) => `titles?page=${request.page}`,
+      query: (request: TitlesRequest) => {
+        const { page, list, genre, info } = request;
+        return {
+          url: "titles",
+          params: { page, list, genre, info },
+        };
+      },
     }),
     getTitle: builder.query({
       query: (id: string) => `titles/${id}`,

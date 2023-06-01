@@ -6,9 +6,9 @@ import classNames from "classnames";
 
 const navigation = {
   pages: [
+    { name: "Home", href: "/" },
     { name: "Movies", href: "/movies" },
     { name: "Series", href: "/series" },
-    { name: "Actors", href: "/actors" },
   ],
 };
 
