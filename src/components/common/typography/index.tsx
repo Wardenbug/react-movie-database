@@ -18,7 +18,7 @@ const TYPOGRAPHY_STYLES = {
   h5: "",
   h6: "",
   p: "text-sm leading-6 text-gray-600",
-  span: "text-sm leading-6 text-gray-600",
+  span: "text-xs leading-6 text-gray-600",
 };
 
 const Typography: FC<TypographyProps> = ({

@@ -19,7 +19,13 @@ const buttonTypes = {
   outline: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50",
 };
 
-const Button: FC<ButtonProps> = ({ children, type, onClick, disabled }) => {
+const Button: FC<ButtonProps> = ({
+  children,
+  type,
+  onClick,
+  disabled,
+  className,
+}) => {
   return (
     <div
       className={classNames(
@@ -29,7 +35,8 @@ const Button: FC<ButtonProps> = ({ children, type, onClick, disabled }) => {
           "cursor-pointer": onClick,
           "pointer-events-none": disabled,
           "opacity-70": disabled,
-        }
+        },
+        className
       )}
     >
       {children}

@@ -1,20 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-
-type infoType =
-  | "base_info"
-  | "mini_info"
-  | "image"
-  | "creators_directors_writers"
-  | "revenue_budget"
-  | "extendedCast"
-  | "rating"
-  | "awards" | 'custom_info';
-interface TitlesRequest {
-  page: number;
-  list?: string;
-  genre?: string;
-  info?: infoType;
-}
+import { TitlesRequest, TitlesResponse } from "../types";
 
 export const moviesDatabaseApi = createApi({
   reducerPath: "moviesDatabaseApi",
@@ -29,7 +14,7 @@ export const moviesDatabaseApi = createApi({
     getActors: builder.query({
       query: () => "actors",
     }),
-    getTiltes: builder.query({
+    getTiltes: builder.query<TitlesResponse>({
       query: (request: TitlesRequest) => {
         const { page, list, genre, info } = request;
         return {
