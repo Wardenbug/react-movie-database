@@ -1,40 +1,38 @@
-interface ListItem {
-  title: string;
-  slug: string;
-}
+import { ListItem } from "../types";
+import { ListTypes } from "../enums";
 
 const Lists: ListItem[] = [
   {
     title: "Top 250 Movies",
-    slug: "top_rated_250",
+    slug: ListTypes.TopRated250,
   },
   {
     title: "Most Pop Movies",
-    slug: "most_pop_movies",
+    slug: ListTypes.MostPopMovies,
   },
   {
     title: "Most Pop Series",
-    slug: "most_pop_series",
+    slug: ListTypes.MostPopSeries,
   },
   {
     title: "Top Box Office 200",
-    slug: "top_boxoffice_200",
+    slug: ListTypes.TopBoxOffice200,
   },
   {
     title: "Top Box Office Last Weekend",
-    slug: "top_boxoffice_last_weekend_10",
+    slug: ListTypes.TopBoxOfficeLastWeekend,
   },
   {
     title: "top_rated_lowest_100",
-    slug: "top_rated_lowest_100",
+    slug: ListTypes.TopRatedLowest100,
   },
   {
     title: "top_rated_series_250",
-    slug: "top_rated_series_250",
+    slug: ListTypes.TopRatedSeries250,
   },
   {
     title: "Titles",
-    slug: "titles",
+    slug: ListTypes.Titles,
   },
 ];
 
