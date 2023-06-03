@@ -2,7 +2,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { MainPage } from "./pages/main";
 import { HomePage } from "./pages/home";
-import { Header } from "./components";
+import { Header, Footer } from "./components";
 
 function App() {
   return (
@@ -18,6 +18,7 @@ function App() {
           </Routes>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

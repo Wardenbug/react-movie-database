@@ -1,7 +1,6 @@
 import { useGetTiltesQuery } from "../../services/moviesdatabase";
-import { TopMovies } from "../../components";
-import "swiper/css/pagination";
-import "swiper/css";
+import { TopMovies, ListSection } from "../../components";
+import { ListTypes } from "../../enums";
 
 const HomePage = () => {
   const { data, isLoading, error } = useGetTiltesQuery({
@@ -11,8 +10,24 @@ const HomePage = () => {
   });
 
   return (
-    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white max-h-96">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 bg-white">
       {data?.results && <TopMovies titles={data.results} />}
+      <ListSection
+        heading="Most Pop Movies"
+        listType={ListTypes.MostPopMovies}
+      />
+      <ListSection
+        heading="Most Pop Series"
+        listType={ListTypes.MostPopSeries}
+      />
+      <ListSection
+        heading="Top Rated Movies 250"
+        listType={ListTypes.TopRated250}
+      />
+      <ListSection
+        heading="Top Rated Series 250"
+        listType={ListTypes.TopRatedSeries250}
+      />
     </div>
   );
 };

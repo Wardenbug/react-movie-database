@@ -16,7 +16,7 @@ const Header: FC = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="bg-white">
+    <header className="bg-white">
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="relative z-40 lg:hidden" onClose={setOpen}>
           <Transition.Child
@@ -130,7 +130,7 @@ const Header: FC = () => {
           </div>
         </nav>
       </header>
-    </div>
+    </header>
   );
 };
 

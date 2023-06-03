@@ -1,8 +1,11 @@
 import { FC } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
-import { Button, Typography, Badge } from "..";
+import { Button, Typography, Badge, Image } from "..";
 import { Title } from "../../types";
+
+import "swiper/css/pagination";
+import "swiper/css";
 
 interface TopMoviesProps {
   titles: Title[];
@@ -48,10 +51,10 @@ const TopMovies: FC<TopMoviesProps> = ({ titles }) => {
                 </div>
               </div>
               <div>
-                <img
-                  src={el.primaryImage?.url}
+                <Image
+                  src={el.primaryImage?.url || ""}
                   className="md:-ml-4 lg:-ml-0"
-                  alt={el.primaryImage?.caption.plainText}
+                  alt={el.primaryImage?.caption.plainText || el.titleText.text}
                 />
               </div>
             </div>
