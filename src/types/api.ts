@@ -24,3 +24,11 @@ export interface TitlesResponse {
   page: string;
   results: Title[];
 }
+
+export interface TitleRequest {
+  info?: InfoType;
+  id: Title["id"];
+}
+export interface TitleResponse {
+  results: Title;
+}
