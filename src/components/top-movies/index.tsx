@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Autoplay } from "swiper";
 import { Button, Typography, Badge, Image } from "..";
 import { Title } from "../../types";
+import { Link } from "react-router-dom";
+import { RoutePaths } from "../../routes/routes";
 
 import "swiper/css/pagination";
 import "swiper/css";
@@ -26,9 +28,11 @@ const TopMovies: FC<TopMoviesProps> = ({ titles }) => {
           <SwiperSlide key={el.id}>
             <div className="mx-auto grid max-h-96 max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
               <div className="lg:pr-8 lg:pt-4">
-                <Typography tag="h2" className="mt-2">
-                  {el.titleText.text}
-                </Typography>
+                <Link to={`${RoutePaths.Title}/${el.id}`}>
+                  <Typography tag="h2" className="mt-2">
+                    {el.titleText.text}
+                  </Typography>
+                </Link>
                 <Typography tag="span">
                   IMDb rating: {el.ratingsSummary.aggregateRating} / 10
                 </Typography>
@@ -47,7 +51,9 @@ const TopMovies: FC<TopMoviesProps> = ({ titles }) => {
                 </div>
 
                 <div className="flex justify-end mt-4">
-                  <Button type="outline">View More</Button>
+                  <Link to={`${RoutePaths.Title}/${el.id}`}>
+                    <Button type="outline">View More</Button>
+                  </Link>
                 </div>
               </div>
               <div>

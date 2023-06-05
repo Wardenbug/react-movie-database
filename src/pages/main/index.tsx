@@ -1,4 +1,4 @@
-import { useState, useEffect, Fragment } from "react";
+import { useState, Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import {
   ChevronDownIcon,
@@ -21,23 +21,9 @@ const sortOptions = [
   { name: "Price: High to Low", href: "#", current: false },
 ];
 
-interface Movie {
-  id: string;
-  originalTitleText: { text: string };
-  primaryImage: { url: string };
-}
 const MainPage = () => {
-  const [titles, setTitles] = useState<Movie[]>([]);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
   const { data, error, isLoading } = useGetTiltesQuery({ page: 1 });
-
-  console.log(data, error, isLoading);
-
-  useEffect(() => {
-    // axios.request(options).then((res) => {
-    //   setTitles(res.data.results);
-    // });
-  }, []);
 
   return (
     <div className="bg-white">

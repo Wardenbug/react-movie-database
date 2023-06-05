@@ -3,12 +3,13 @@ import { Dialog, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { NavLink } from "react-router-dom";
 import classNames from "classnames";
+import { RoutePaths } from "../../../routes/routes";
 
 const navigation = {
   pages: [
-    { name: "Home", href: "/" },
-    { name: "Movies", href: "/movies" },
-    { name: "Series", href: "/series" },
+    { name: "Home", href: RoutePaths.Home },
+    { name: "Movies", href: RoutePaths.Movies },
+    { name: "Series", href: RoutePaths.Series },
   ],
 };
 

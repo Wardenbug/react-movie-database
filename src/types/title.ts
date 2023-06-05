@@ -13,6 +13,50 @@ export interface PrimaryImage {
   };
 }
 
+interface Character {
+  name: string;
+}
+export interface Actor {
+  characters: Character[];
+  name: {
+    id: string;
+    nameText: {
+      text: string;
+    };
+    primaryImage: {
+      height: number;
+      width: number;
+      url: string;
+    };
+  };
+}
+
+interface Director {
+  category: {
+    text: string;
+  };
+  credits: {
+    name: {
+      id: string;
+      nameText: {
+        text: string;
+      };
+    };
+  }[];
+}
+interface PrincipalCast {
+  credits: Actor[];
+}
+
+interface Edge {
+  node: {
+    text: string;
+  };
+}
+interface Keywords {
+  total: number;
+  edges: Edge[];
+}
 export interface Title {
   id: string;
   titleText: {
@@ -27,6 +71,7 @@ export interface Title {
   genres: {
     genres: Genre[];
   };
+  principalCast: PrincipalCast[];
   ratingsSummary: {
     aggregateRating: number;
     voteCount: number;
@@ -35,4 +80,7 @@ export interface Title {
     endYear?: number;
     year?: number;
   };
+  directors: Director[];
+  trailer?: string;
+  keywords: Keywords;
 }
